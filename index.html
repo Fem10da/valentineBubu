@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Залишимо тільки один meta viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <link rel="stylesheet" href="styles.css">
   <title>Valentine's Proposal</title>
 </head>
-
 <body>
   <div class="container">
     <div class="Mainprompt">
-      <img class="image" src="images/cute.gif" alt="cutegif">
+      <img class="image" src="images/cute.gif" alt="Cute GIF">
       
       <div class="text">
         <h1 class="hh" id="name">Привіт, красуне!</h1>
@@ -20,41 +17,34 @@
       </div>
 
       <div class="buttons">
-        <button class="button no" id="no-button" onclick="showMessage('No')">Ні</button>
+        <!-- Прибрали onclick="showMessage('No')" -->
+        <button class="button no" id="no-button">Ні</button>
+        <!-- Кнопка “Так” лишається з onclick -->
         <button class="button yes" onclick="showMessage('Yes')" id="yesButton">Так</button>
       </div>
     </div>
   </div>
 
   <script>
-    const button = document.getElementById('no-button');
-    
-    // При наведенні (mouseenter) на кнопку "Ні"
-    button.addEventListener('mouseenter', function() {
-      showMessage('No');
-    });
-
+    // Універсальна функція
     function showMessage(response) {
       if (response === "No") {
-        const noButton = document.getElementById("no-button");
-        const container = document.querySelector(".container");
-
-        // Обрисовуємо межі контейнера
-        const containerWidth = container.offsetWidth - noButton.offsetWidth;
+        const noButton   = document.getElementById("no-button");
+        const container  = document.querySelector(".container");
+        const containerWidth  = container.offsetWidth  - noButton.offsetWidth;
         const containerHeight = container.offsetHeight - noButton.offsetHeight;
 
         noButton.style.position = "absolute";
         document.getElementsByClassName("image")[0].src = "images/gun.gif";
 
-        // Генеруємо довільні координати в межах контейнера
         const randomX = Math.max(0, Math.floor(Math.random() * containerWidth));
         const randomY = Math.max(0, Math.floor(Math.random() * containerHeight));
 
         noButton.style.left = randomX + "px";
-        noButton.style.top = randomY + "px";
+        noButton.style.top  = randomY + "px";
 
         document.getElementById("question").textContent = "Альо, ти що там задумала?";
-        document.getElementById("name").style.display = "none";
+        document.getElementById("name").style.display   = "none";
       }
 
       if (response === "Yes") {
@@ -62,14 +52,30 @@
         document.getElementById("no-button").remove();
 
         const yesMessage = document.getElementById("question");
-        yesMessage.textContent = "Ти моя BUBU 😘";
-        yesMessage.style.display = "block";
-        yesMessage.style.fontStyle = "normal";
+        yesMessage.textContent        = "Ти моя Bubu 😘";
+        yesMessage.style.display      = "block";
+        yesMessage.style.fontStyle    = "normal";
         document.getElementsByClassName("image")[0].src = "images/kiss.gif";
 
         document.getElementById("yesButton").remove();
       }
     }
+
+    // 1) Знаходимо кнопку “Ні”
+    const noButton = document.getElementById('no-button');
+
+    // 2) Додаємо універсальний обробник для десктопів і телефонів.
+    //    pointerdown спрацьовує і на миші, і на торканні пальцем.
+    noButton.addEventListener('pointerdown', function(event) {
+      // Не даємо користувачеві “клікнути” на кнопку
+      event.preventDefault(); 
+      showMessage('No');
+    });
+
+    // (НЕобов'язково) Якщо все ж хочеш, щоб і при наведенні мишкою на десктопі теж спрацьовувало:
+    noButton.addEventListener('mouseenter', function() {
+      showMessage('No');
+    });
   </script>
 </body>
 </html>
