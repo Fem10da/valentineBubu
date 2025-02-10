@@ -1,22 +1,33 @@
+/* Базові стилі */
 body {
-  margin-top: 100px;
+  margin: 0;
+  /* Фонова заливка + зображення */
   background-color: #ffdde1;
+  background: url("images/image.jpeg") repeat;
+  
+  /* Налаштування відображення */
   display: flex;
   justify-content: space-evenly;
-  height: 100vh;
-  margin: 0;
-  background: url("images/image.jpeg") repeat;
+  align-items: flex-start; /* за потреби */
+  
+  /* Шрифти та розмір */
   font-size: 35px;
   color: rgb(255, 0, 174);
+
+  /* Фіксування розміру вікна (якщо потрібно) */
   height: 100vh;
-  position: fixed;
   width: 100%;
+  position: fixed;
 }
+
+/* Заголовок */
 .hh {
   -webkit-text-stroke: 2px #71004f;
   font-weight: 900;
   font-size: 50px;
 }
+
+/* Параграф */
 .pp {
   -webkit-text-stroke: 2px #71004f;
   font-size: 30px;
@@ -24,26 +35,43 @@ body {
   font-weight: 800;
 }
 
-body .container {
+/* Контейнер */
+.container {
+  /* Додаємо position relative,
+     щоб кнопка “Ні” залишалася в межах .container */
+  position: relative;
+
   width: 100%;
   height: 100%;
+  
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+
   background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* GIF або зображення */
 .image {
   height: calc(100vh - 600px);
 }
 
+/* Текстовий блок */
 .text {
   height: 220px;
 }
 
+/* Кнопки */
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* Стилі для обох кнопок "Ні" і "Так" */
 .buttons button {
   background-color: #ff4d79;
   color: #fff;
@@ -54,38 +82,39 @@ body .container {
   font-size: 26px;
   cursor: pointer;
   position: relative;
-  font-family: serif; /* Change to a romantic cursive font */
+  font-family: serif; /* Романтичний шрифт */
 }
 
 .buttons button:hover {
   background-color: #7c1f37;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
-
+/* Конкретно для кнопки "Ні" */
 #no-button {
-  position: absolute;
+  /* Тепер із абсолютним позиціонуванням всередині .container */
+  position: absolute; 
   transition: 0.3s ease-in-out;
+
+  /* Піднімаємо на передній план, щоб її не перекривало gif */
+  z-index: 9999;
 }
 
+/* Додатковий клас */
+.button {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Приховане повідомлення, якщо буде потрібно */
 .hidden-message {
   display: none;
   margin-top: 20px;
 }
 
-.button {
-  font-family: "Courier New", Courier, monospace;
-}
-
+/* Адаптивні стилі */
 @media (min-width: 576px) {
   .pp {
     font-size: 40px;
   }
-
   .hh {
     font-size: 60px;
   }
@@ -96,7 +125,6 @@ body .container {
   .pp {
     font-size: 40px;
   }
-
   .hh {
     font-size: 60px;
   }
@@ -107,7 +135,6 @@ body .container {
   .pp {
     font-size: 40px;
   }
-
   .hh {
     font-size: 60px;
   }
@@ -118,7 +145,6 @@ body .container {
   .pp {
     font-size: 40px;
   }
-
   .hh {
     font-size: 60px;
   }
