@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Proposal</title>
+  <meta charset="UTF-8">
+  <!-- Залишимо тільки один meta viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="styles.css">
+  <title>Valentine's Proposal</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="Mainprompt">
-            <img class="image" src="images/cute.gif"></img>
-            <div class="text">
-              <h1 class="hh" id="name">Привіт, красуне!</h1>
-              <p class="pp" id="question">Ти будеш моєю Валентинкою? </p>
-            </div>
-            <div class="buttons">
-                <button class="button no" id="no-button" onclick="showMessage('No')">Ні</button>
-                <button class="button yes"  onclick="showMessage('Yes')" id="yesButton">Так</button>
-            </div>
-        </div>
+  <div class="container">
+    <div class="Mainprompt">
+      <img class="image" src="images/cute.gif" alt="cutegif">
+      
+      <div class="text">
+        <h1 class="hh" id="name">Привіт, красуне!</h1>
+        <p class="pp" id="question">Ти будеш моєю Валентинкою?</p>
+      </div>
+
+      <div class="buttons">
+        <button class="button no" id="no-button" onclick="showMessage('No')">Ні</button>
+        <button class="button yes" onclick="showMessage('Yes')" id="yesButton">Так</button>
+      </div>
     </div>
-    <script>
+  </div>
 
-      const button = document.getElementById('no-button');
+  <script>
+    const button = document.getElementById('no-button');
+    
+    // При наведенні (mouseenter) на кнопку "Ні"
+    button.addEventListener('mouseenter', function() {
+      showMessage('No');
+    });
 
-      // Add event listener for mouseenter event
-      button.addEventListener('mouseenter', function() {
-          showMessage('No')
-      });
+    function showMessage(response) {
+      if (response === "No") {
+        const noButton = document.getElementById("no-button");
+        const container = document.querySelector(".container");
 
-      function showMessage(response) {
-  if (response === "No") {
-    const noButton = document.getElementById("no-button");
-    const container = document.querySelector(".container");
-    const maxWidth = window.innerWidth - noButton.offsetWidth;
-    const maxHeight = window.innerHeight - noButton.offsetHeight;
+        // Обрисовуємо межі контейнера
+        const containerWidth = container.offsetWidth - noButton.offsetWidth;
+        const containerHeight = container.offsetHeight - noButton.offsetHeight;
 
-    noButton.style.position = "absolute";
+        noButton.style.position = "absolute";
+        document.getElementsByClassName("image")[0].src = "images/gun.gif";
 
-    document.getElementsByClassName("image")[0].src = "images/gun.gif";
+        // Генеруємо довільні координати в межах контейнера
+        const randomX = Math.max(0, Math.floor(Math.random() * containerWidth));
+        const randomY = Math.max(0, Math.floor(Math.random() * containerHeight));
 
-    const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
-    const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
+        noButton.style.left = randomX + "px";
+        noButton.style.top = randomY + "px";
 
-    noButton.style.left = randomX + "px";
-    noButton.style.top = randomY + "px";
+        document.getElementById("question").textContent = "Альо, ти що там задумала?";
+        document.getElementById("name").style.display = "none";
+      }
 
-    document.getElementById("question").textContent =
-      "Альо, ти що там задумала?";
-    document.getElementById("name").style.display = "none";
+      if (response === "Yes") {
+        document.getElementById("name").remove();
+        document.getElementById("no-button").remove();
 
-  }
+        const yesMessage = document.getElementById("question");
+        yesMessage.textContent = "Ти моя BUBU 😘";
+        yesMessage.style.display = "block";
+        yesMessage.style.fontStyle = "normal";
+        document.getElementsByClassName("image")[0].src = "images/kiss.gif";
 
-  if (response === "Yes") {
-    document.getElementById("name").remove();
-    document.getElementById("no-button").remove();
-    const yesMessage = document.getElementById("question");
-    yesMessage.textContent = "Ти моя Bubu 😘";
-    yesMessage.style.display = "block";
-    yesMessage.style.fontStyle = "normal";
-    document.getElementsByClassName("image")[0].src = "images/kiss.gif";
-
-    document.getElementById("yesButton").remove();
-  }
-}
-    </script>
+        document.getElementById("yesButton").remove();
+      }
+    }
+  </script>
 </body>
-
 </html>
