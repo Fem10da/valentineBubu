@@ -1,33 +1,26 @@
-/* Базові стилі */
 body {
   margin: 0;
-  /* Фонова заливка + зображення */
   background-color: #ffdde1;
   background: url("images/image.jpeg") repeat;
-  
-  /* Налаштування відображення */
+
   display: flex;
   justify-content: space-evenly;
-  align-items: flex-start; /* за потреби */
-  
-  /* Шрифти та розмір */
+  align-items: flex-start;
+
   font-size: 35px;
   color: rgb(255, 0, 174);
 
-  /* Фіксування розміру вікна (якщо потрібно) */
+  position: fixed;
   height: 100vh;
   width: 100%;
-  position: fixed;
 }
 
-/* Заголовок */
 .hh {
   -webkit-text-stroke: 2px #71004f;
   font-weight: 900;
   font-size: 50px;
 }
 
-/* Параграф */
 .pp {
   -webkit-text-stroke: 2px #71004f;
   font-size: 30px;
@@ -35,15 +28,11 @@ body {
   font-weight: 800;
 }
 
-/* Контейнер */
 .container {
-  /* Додаємо position relative,
-     щоб кнопка “Ні” залишалася в межах .container */
-  position: relative;
-
+  position: relative; 
   width: 100%;
   height: 100%;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,24 +43,20 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* GIF або зображення */
 .image {
   height: calc(100vh - 600px);
 }
 
-/* Текстовий блок */
 .text {
   height: 220px;
 }
 
-/* Кнопки */
 .buttons {
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
 
-/* Стилі для обох кнопок "Ні" і "Так" */
 .buttons button {
   background-color: #ff4d79;
   color: #fff;
@@ -82,70 +67,59 @@ body {
   font-size: 26px;
   cursor: pointer;
   position: relative;
-  font-family: serif; /* Романтичний шрифт */
+  font-family: serif;
 }
 
 .buttons button:hover {
   background-color: #7c1f37;
 }
 
-/* Конкретно для кнопки "Ні" */
 #no-button {
-  /* Тепер із абсолютним позиціонуванням всередині .container */
-  position: absolute; 
+  position: absolute;
   transition: 0.3s ease-in-out;
-
-  /* Піднімаємо на передній план, щоб її не перекривало gif */
   z-index: 9999;
 }
 
-/* Додатковий клас */
-.button {
-  font-family: "Courier New", Courier, monospace;
-}
-
-/* Приховане повідомлення, якщо буде потрібно */
 .hidden-message {
   display: none;
   margin-top: 20px;
 }
 
-/* Адаптивні стилі */
-@media (min-width: 576px) {
-  .pp {
-    font-size: 40px;
-  }
-  .hh {
-    font-size: 60px;
-  }
+.button {
+  font-family: "Courier New", Courier, monospace;
 }
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  .pp {
-    font-size: 40px;
-  }
-  .hh {
-    font-size: 60px;
-  }
-}
+/* Адаптив - приклад */
+@media (max-width: 575px) {
+  body {
+    position: static; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: hidden;
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .pp {
-    font-size: 40px;
+    font-size: 20px;
   }
-  .hh {
-    font-size: 60px;
-  }
-}
 
-/* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .pp {
-    font-size: 40px;
+  .image {
+    max-width: 80%;
+    height: auto;
   }
+
   .hh {
-    font-size: 60px;
+    font-size: 32px;
+  }
+
+  .pp {
+    font-size: 24px;
+    -webkit-text-stroke: 1px #71004f;
+  }
+
+  .buttons button {
+    font-size: 20px;
+    padding: 8px 20px;
+    margin: 5px;
   }
 }
